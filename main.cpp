@@ -19,9 +19,10 @@ void creatlut(Mat imageInput, Mat imageTarget, int num, float valueTable[3][3]){
      * (XXˆT)ˆ(-1) = arrayXXTInv
      *  YXˆT = arrayYXT
      *  valueTable = B       */
-    int arrayXXT[3][3];
-    int arrayYXT[3][3];
-    int arrayXXTInv[3][3];
+    float arrayXXT[3][3];
+    float arrayYXT[3][3];
+    float arrayXXTInv[3][3];
+    float determinant = 0;
 
     for(int i = 0; i < num; i++){
         xy[0].push_back(rand() % imageInput.cols + 0);
@@ -43,6 +44,17 @@ void creatlut(Mat imageInput, Mat imageTarget, int num, float valueTable[3][3]){
         }
     }
 
+    for(int i = 0; i < 3; i++) {
+        determinant = determinant + (arrayXXT[0][i] * (arrayXXT[1][(i + 1) % 3] * arrayXXT[2][(i + 2) % 3] -
+                                                  arrayXXT[1][(i + 2) % 3] * arrayXXT[2][(i + 1) % 3]));
+    }
+
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            arrayXXTInv[i][j] = ((arrayXXT[(j+1)%3][(i+1)%3] * arrayXXT[(j+2)%3][(i+2)%3]) - (arrayXXT[(j+1)%3][(i+2)%3] * arrayXXT[(j+2)%3][(i+1)%3]))/ determinant;
+        }
+    }
+
     for(int i = 0; i < 3 ; i++){
         for(int j = 0; j < 3; j++){
             for(int k = 0;k < inputArray[0].size(); k++){
@@ -50,14 +62,15 @@ void creatlut(Mat imageInput, Mat imageTarget, int num, float valueTable[3][3]){
             }
         }
     }
-    /// Chỗ này cần 1 chương trình con để lấy nghịch đảo của arrayXXT
 
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             for(int k = 0; k < 3; k++){
                 valueTable[i][j] += arrayYXT[i][k] * arrayXXTInv[k][j];
             }
+            cout << valueTable[i][j] << " ";
         }
+        cout << endl;
     }
     /// Cần chuẩn hóa lại cái valueTable nữa là xong;
 
@@ -100,4 +113,3 @@ int main(){
     imshow("image output",image);
     waitKey(0);
 }
-
