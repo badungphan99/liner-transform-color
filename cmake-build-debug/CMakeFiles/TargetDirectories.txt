@@ -1,0 +1,3 @@
+/Users/dungba/Dev/XLA/LinearTransformColor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/dungba/Dev/XLA/LinearTransformColor/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/dungba/Dev/XLA/LinearTransformColor/cmake-build-debug/CMakeFiles/LinearTransformColor.dir
