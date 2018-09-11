@@ -14,6 +14,11 @@ void creatlut(Mat imageInput, Mat imageTarget, int num, float valueTable[3][3]){
     vector<int> inputArray[3];
     vector<int> targetArray[3];
     vector<int> xy[2];
+    /* B = YXˆT(XXˆT)ˆ(-1)
+     * (XXˆT) = arrayXXT
+     * (XXˆT)ˆ(-1) = arrayXXTInv
+     *  YXˆT = arrayYXT
+     *  valueTable = B       */
     int arrayXXT[3][3];
     int arrayYXT[3][3];
     int arrayXXTInv[3][3];
