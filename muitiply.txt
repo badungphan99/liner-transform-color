@@ -12,6 +12,5 @@ Mat image = imread(input,CV_LOAD_IMAGE_COLOR);
             }
         }
     }
-
     imshow("after",image);
     waitKey(0);
